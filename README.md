@@ -4,11 +4,12 @@ This manual is made for an IoT schoolproject. I've created an IoT fan called WiF
 
 ![banner](img/Bannner.png)
 
-The manual will be divided into 4 main sections. ???????????????????
+The manual will be divided into 5 steps:
 1. Connecting the Relay to the Microcontroller
 2. Connecting a power cable to the Relay
 3. Setting up the Weather API
-4. Putting everything together to make a working product
+4. Creating the code for the Microcontroller
+5. Putting everything together to make a working product
 
 <br>
 <br>
@@ -26,11 +27,10 @@ When following this manual I assume that you have the following hardware & softw
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * NodeMCU USB Drivers
 
-### 📚 Libaries?
-* ArduinoJson?
-* ArduinoHttpClient?
+### 📚 Libaries
+* ArduinoJson
+* WiFiClientSecure
 * ESP8266WiFi
-* ESP8266HTTPClient
 
 <br>
 <br>
@@ -154,7 +154,11 @@ Recieving JSON code with temperatures in Celcius?, Great! we can move onto the n
 <br>
 
 ## ⌨️ The code
-And now for the fun part, but also the hardest part (for me atleast), the code. This part took by far the most time, but I will keep it simple in this manual. I will post the full code below incase you don't want to read every part, and I will go through it step by step after that.
+And now for the fun part, but also the hardest part (for me atleast), the code. This part took by far the most time, but I will keep it simple in this manual. I will post the full code below. You can copy everything, just change these 3 things:
+
+* `char ssid[] = "???";       // REPLACE with your network SSID (name)`
+* `char password[] = "???";  // REPLACE with your network key`
+* `client.print("/data/2.5/weather?q=Amsterdam&appid=*****APIKEYHERE*****&units=metric") // REPLACE LOCATION AND APIKEY`
 
 ````C++
 #include <ESP8266WiFi.h>
@@ -264,7 +268,7 @@ void makeHTTPRequest() {
 
     Serial.print("Temperature in ");
     Serial.print(location);
-    Serial.print(" :");
+    Serial.print(": ");
     Serial.println(temp);
 
     if (temp < 25) {
@@ -289,15 +293,70 @@ void loop() {
 }
 ````
 
-> Getting this final code was a pain in the ass. Almost all manuals online are outdated and are using an old version of ArduinoJson or other obsolete pieces of code. This is just a few of the many error messages I've
-> <img src="img/a.png" alt="error 1" width="500"/>
-> <img src="img/b.png" alt="error 2" width="500"/>
-> <br>
-> After hours of trying, I finally found a recent and up to date source. [This GitHub Repo](https://github.com/witnessmenow/arduino-sample-api-request/blob/master/ESP8266/HTTP_GET_JSON/HTTP_GET_JSON.ino) saved this project and it is the base of my code.
-> It didn't work immidiatly however. The ESP board connected to my network, but it didn't get the API's data. The error message I recieved was the following:
-> <img src="img/c.png" alt="error 3" width="500"/>
-> It seemed to be a memory issue. I watched [a tutorial](https://www.youtube.com/watch?v=NYP_CxdYzLo) that told me to calculate how much memory I need for my API and to change it in the code. The tool to calculate how much memory to use is called [ArduinoJson Assistant](https://arduinojson.org/v6/assistant/). My result was the following:
-> <img src="img/e.png" alt="" width="500"/>
-> It recommende 1024, so I changed my code from 192 to 1024
-> <img src="img/d.png" alt="" width="500"/>
+Getting this final code was a pain in the ass. Almost all manuals online are outdated and are using an old version of ArduinoJson or other obsolete pieces of code. This is just a few of the many error messages I've
+
+<img src="img/a.png" alt="error 1" width="500"/>
+
+<img src="img/b.png" alt="error 2" width="500"/>
+
+After hours of trying, I finally found a recent and up to date source. [This GitHub Repo](https://github.com/witnessmenow/arduino-sample-api-request/blob/master/ESP8266/HTTP_GET_JSON/HTTP_GET_JSON.ino) saved this project and it is the base of my code.
+It didn't work immidiatly however. The ESP board connected to my network, but it didn't get the API's data. The error message I recieved was the following:
+
+<img src="img/c.png" alt="error 3" width="500"/>
+
+It seemed to be a memory issue. I watched [a tutorial](https://www.youtube.com/watch?v=NYP_CxdYzLo) that told me to calculate how much memory I need for my API and to change it in the code. The tool to calculate how much memory to use is called [ArduinoJson Assistant](https://arduinojson.org/v6/assistant/). My result was the following:
+
+<img src="img/e.png" alt="" width="500"/>
+
+It recommende 1024, so I changed my code from 192 to 1024
+
+<img src="img/d.png" alt="" width="500"/>
+
+After changing this, the output in the serial monitor was as followed:
+
+<img src="img/f.png" alt="" width="500"/>
+
+I couldn't be happier, it finally worked! 🥳
+
+## 🤯 Step 5: Putting everything together
+
+Now that I've got the API working, I can combine Step 1 (the relay code) with the rest of the code.
+I've added these lines in my final code:
+`int relay = D7;` & `pinMode(relay, OUTPUT);`
+
+And I created the follow function to turn on the fan if the temperatur is below 25 degrees Celcius:
+````C++
+if (temp < 25) {
+      digitalWrite(relay, LOW);
+      Serial.println("Fan turned off");
+  } else {
+      digitalWrite(relay, HIGH);
+      Serial.println("Fan turned on");
+````
+
+The result was this:
+
+<img src="img/g.png" alt="" width="500"/>
+
+It worked!
+
+I then add the current location for the temperature in the Serial Monitor. This made it easier to understand if it's working based of location
+
+````C++
+float temp = doc["main"]["temp"];
+    String location = doc["name"];
+
+    Serial.print("Temperature in ");
+    Serial.print(location);
+    Serial.print(": ");
+    Serial.println(temp);
+````
+
+The result was this:
+
+<img src="img/h.png" alt="" width="500"/>
+
+Awesome, everything works! 🥳 Just to proof everything is working, I changed my location to warmer place, in this case Yucatan. The serial monitor should print out a higher temperature and the fan should turn on. Fortunately, this was the case:
+
+<img src="img/j.png" alt="" width="500"/>
 

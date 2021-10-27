@@ -318,6 +318,10 @@ After changing this, the output in the serial monitor was as followed:
 
 I couldn't be happier, it finally worked! 🥳
 
+<br>
+<br>
+
+
 ## 🤯 Step 5: Putting everything together
 
 Now that I've got the API working, I can combine Step 1 (the relay code) with the rest of the code.
@@ -359,6 +363,10 @@ The result was this:
 Awesome, everything works! 🥳 Just to proof everything is working, I changed my location to warmer place, in this case Yucatan. The serial monitor should print out a higher temperature and the fan should turn on. Fortunately, this was the case:
 
 <img src="img/j.png" alt="" width="500"/>
+
+<br>
+<br>
+
 
 ## ✅ Step 6: Done!!
 

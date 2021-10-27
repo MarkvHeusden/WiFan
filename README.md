@@ -360,3 +360,8 @@ Awesome, everything works! 🥳 Just to proof everything is working, I changed m
 
 <img src="img/j.png" alt="" width="500"/>
 
+## ✅ Step 6: Done!!
+
+This is where I'm going to end this project. I did want to add some additional things, but this project was way harder than expected and it took me a lot of time. So feel free to expand this project yourself with cool features!
+
+![](https://media.giphy.com/media/3XiQswSmbjBiU/giphy.gif)

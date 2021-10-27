@@ -4,8 +4,8 @@ This manual is made for an IoT schoolproject. I've created an IoT fan called WiF
 
 ![](img/Bannner.png)
 
-The manual will be divided into 4 main sections.
-1. Setting up the Microcontroller & Relay
+The manual will be divided into 4 main sections. ???????????????????
+1. Setting up the Microcontroller & Relay ??? hardware eerst
 2. Connecting the Microcontroller & Relay to your fan
 3. Using an open weather API to get your outside temperature
 4. Putting everything together to make a working product
@@ -13,21 +13,24 @@ The manual will be divided into 4 main sections.
 ## Prerequisites
 When following this manual I assume that you have the following hardware & software installed. If this is not the case, please set-up your Microcontroller correctly before following this manual.
 
-## Hardware
+### Hardware
 * NodeMCU ESP8266 Microcontroller (or similar board)
 * Relay Module
 * Extension Cord (optional but preferable)
 * Fan
 
-## Software
+### Software
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * NodeMCU USB Drivers
 
-## Libaries
+### Libaries?
 * ArduinoJson?
 * ArduinoHttpClient?
+* ESP8266WiFi
+* ESP8266HTTPClient
 
-
+## Step 1: Connecting the hardware
+Connect your Microcontroller to your computer via USB. Then take your relay and connect it to your Microcontroller. My relay looked something like this:
 
 
 

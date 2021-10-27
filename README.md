@@ -7,7 +7,7 @@ This manual is made for an IoT schoolproject. I've created an IoT fan called WiF
 The manual will be divided into 4 main sections. ???????????????????
 1. Connecting the Relay to the Microcontroller
 2. Connecting a power cable to the Relay
-3. Using an open weather API to get your outside temperature
+3. Setting up the Weather API
 4. Putting everything together to make a working product
 
 <br>
@@ -145,6 +145,16 @@ If you see JSON code, your API request worked. The only problem is, the temperat
 ````
 api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=metric
 ````
+
+<img src="img/s6.png" alt="API result celcius" width="500"/>
+
+Recieving JSON code with temperatures in Celcius?, Great! we can move onto the next step 🥳
+
+<br>
+<br>
+
+## ⌨️ The code
+
 
 
 ## ap

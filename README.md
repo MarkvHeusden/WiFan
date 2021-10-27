@@ -100,7 +100,11 @@ You can see I've connected the blue cable to the relay and the brown cable to th
 
 Now it's time to test our Frankensteined extension cord switch. I used the same code as step 1 to test the relay. I connected a lamp to the extension cord to see if it really works. The lamp should turn on and off every 2 seconds. I've made a video while testing it so you can see how it should look:
 
-![](img/IMG_4137.MOV)
+
+https://user-images.githubusercontent.com/74104639/139115205-c535424f-9bf2-4897-97b8-c783ff37cd2b.MOV
+
+
+
 
 <br>
 <br>

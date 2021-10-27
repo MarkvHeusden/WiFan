@@ -69,11 +69,22 @@ This simple program start by turning on the relay. 2 seconds after that, it turn
 Did everything work as planned? Congrats! 🥳 Let's move onto the next step.
 
 ## Step 2: Connecting a power cable
-A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I reccomend using an extension cord with an switch. With this extension cord, u can just remove the switch to reveal the wires.
+A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I reccomend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
 
 <img src="img/IMG_4131.jpeg" alt="esp8266 connected" width="500"/>
 
-> My extension cord looked something like this. As you can see it has a switch, but it isn't a grounded plug. This makes it easier to connect, but you can't connect every device to this extension cord and it might be more dangerous than a grounded cord.
+My extension cord looked something like this. As you can see it has a switch, which makes it easy for me to connect the relay. You do need to use a terminal block however with this cord, because both wires will be exposed when you remove the switch and you only need 1 for the relay. After removing the switch or cutting open the cable and revealing/stripping the wires, your extension cord should look something like this:
+
+<img src="img/IMG_4134.jpeg" alt="esp8266 connected" width="500"/>
+
+> As you can see in the picture my extension cord is an ungrounded cable. This might make it a bit easier to connect, but you can't connect every device to this extension cord, because most bigger devices have grounded plugs. I found this out too late which prevented me from connecting the fan I wanted to connect.
+
+Now you can connect your relay to one of the two cables. Just put both stripped ends of 1 wire in your relay and screw it down. Put a terminal block on the other cable to continue the circuit. After you've finished connecting the relay, it should look something like this:
+
+<img src="img/IMG_4131.jpeg" alt="esp8266 connected" width="500"/>
+
+
+
 
 ## api
 And now for the fun part

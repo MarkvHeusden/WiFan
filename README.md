@@ -289,8 +289,15 @@ void loop() {
 }
 ````
 
-> Getting this final 
+> Getting this final code was a pain in the ass. Almost all manuals online are outdated and are using an old version of ArduinoJson or other obsolete pieces of code. This is just a few of the many error messages I've
+> <img src="img/a.png" alt="error 1" width="500"/>
+> <img src="img/b.png" alt="error 2" width="500"/>
+> <br>
+> After hours of trying, I finally found a recent and up to date source. [This GitHub Repo](https://github.com/witnessmenow/arduino-sample-api-request/blob/master/ESP8266/HTTP_GET_JSON/HTTP_GET_JSON.ino) saved this project and it is the base of my code.
+> It didn't work immidiatly however. The ESP board connected to my network, but it didn't get the API's data. The error message I recieved was the following:
+> <img src="img/c.png" alt="error 3" width="500"/>
+> It seemed to be a memory issue. I watched [a tutorial](https://www.youtube.com/watch?v=NYP_CxdYzLo) that told me to calculate how much memory I need for my API and to change it in the code. The tool to calculate how much memory to use is called [ArduinoJson Assistant](https://arduinojson.org/v6/assistant/). My result was the following:
+> <img src="img/e.png" alt="" width="500"/>
+> It recommende 1024, so I changed my code from 192 to 1024
+> <img src="img/d.png" alt="" width="500"/>
 
-
-## ap
-And now for the fun part

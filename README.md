@@ -10,26 +10,32 @@ The manual will be divided into 4 main sections. ???????????????????
 3. Using an open weather API to get your outside temperature
 4. Putting everything together to make a working product
 
-## Prerequisites
+<br>
+<br>
+
+## 📝 Prerequisites
 When following this manual I assume that you have the following hardware & software installed. If this is not the case, please set-up your Microcontroller correctly before following this manual.
 
-### Hardware
+### ⚙️ Hardware
 * NodeMCU ESP8266 Microcontroller (or similar board)
 * Relay Module
 * Extension Cord (optional but preferable)
 * Fan
 
-### Software
+### 🖥️ Software
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * NodeMCU USB Drivers
 
-### Libaries?
+### 📚 Libaries?
 * ArduinoJson?
 * ArduinoHttpClient?
 * ESP8266WiFi
 * ESP8266HTTPClient
 
-## Step 1: Connecting the Relay
+<br>
+<br>
+
+## 🕹️ Step 1: Connecting the Relay
 Connect your Microcontroller to your computer via USB. Then take your relay and connect it to your Microcontroller. My relay looked something like this:
 
 <img src="img/IMG_4098.jpeg" alt="Relay" width="500"/>
@@ -46,6 +52,8 @@ Connect the black wire (GND) with the Ground pin on my ESP8266 and connect the r
 With everything connected, your board should look something like this:
 
 <img src="img/IMG_4102.jpeg" alt="esp8266 connected" width="500"/>
+
+### 🤓 Testing...
 
 
 After connecting the wires it is time to test our relay. I used the following code:
@@ -66,9 +74,12 @@ void loop() {
 ````
 This simple program start by turning on the relay. 2 seconds after that, it turns off. 2 seconds later, the loop function starts again. This is a simple way to test if everything is working so far.
 
-Did everything work as planned? Congrats! 🥳 Let's move onto the next step.
+Did everything work as planned? Congrats! 🥳. Let's move onto the next step.
 
-## Step 2: Connecting a power cable
+<br>
+<br>
+
+## 🔌 Step 2: Connecting a power cable
 A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I reccomend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
 
 <img src="img/IMG_4131.jpeg" alt="esp8266 connected" width="500"/>
@@ -81,10 +92,18 @@ My extension cord looked something like this. As you can see it has a switch, wh
 
 Now you can connect your relay to one of the two cables. Just put both stripped ends of 1 wire in your relay and screw it down. Put a terminal block on the other cable to continue the circuit. After you've finished connecting the relay, it should look something like this:
 
-<img src="img/IMG_4131.jpeg" alt="esp8266 connected" width="500"/>
+<img src="img/IMG_4135.jpeg" alt="esp8266 connected" width="500"/>
 
+You can see I've connected the blue cable to the relay and the brown cable to the terminal block.
 
+### 🤓 Testing...
 
+Now it's time to test our Frankensteined extension cord switch. I used the same code as step 1 to test the relay. I connected a lamp to the extension cord to see if it really works. The lamp should turn on and off every 2 seconds. I've made a video while testing it so you can see how it should look:
+
+![](img/IMG_4137.MOV)
+
+<br>
+<br>
 
 ## api
 And now for the fun part

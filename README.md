@@ -45,7 +45,7 @@ As you can see my relay has 4 pins: GND, VCC, NC and SIG. For this case, I'm onl
 
 <img src="img/Relais-Module-NodeMCU_Steckplatine.png" alt="how to connect relay to esp8266" width="500"/>
 
-Connect the black wire (GND) with the Ground pin on my ESP8266 and connect the red wire (VCC) with the 3V3 pin on your board. Leave the white wire unplugged and connect the yellow wire (SIG) with D7 pin on your board.
+Connect the black wire (GND) with the Ground pin on your ESP8266 and connect the red wire (VCC) with the 3V3 pin on your board. Leave the white wire unplugged and connect the yellow wire (SIG) with the D7 pin on your board.
 
 > Warning! Connect these wires carefully. The guide I used, and the picture above told me to connect the VCC on the relay with the VIN pin on your board when using an ESP8266 or ESP32, because you need a 5V output. I’ve tried it, and my wire immediately started smoking, so please don’t make the same mistake. The 3V3 pin works fine for me instead.
 
@@ -80,7 +80,7 @@ Did everything work as planned? Congrats! 🥳. Let's move onto the next step.
 <br>
 
 ## 🔌 Step 2: Connecting a power cable
-A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason, we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I recommend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
+A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason, we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to use different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I recommend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
 
 <img src="img/IMG_4131.jpeg" alt="power cable" width="500"/>
 
@@ -98,11 +98,9 @@ You can see I've connected the blue cable to the relay and the brown cable to th
 
 ### 🤓 Testing...
 
-Now it's time to test our Frankensteined extension cord switch. I used the same code as step 1 to test the relay. I connected a lamp to the extension cord to see if it really works. The lamp should turn on and off every 2 seconds. I've made a video while testing it so you can see how it should look:
-
+Now it's time to test our Frankensteined extension cord switch. I used the same code as in step 1 to test the relay. I connected a lamp to the extension cord to see if it really works. The lamp should turn on and off every 2 seconds. I've made a video while testing it so you can see how it should work:
 
 https://user-images.githubusercontent.com/74104639/139117092-a1e6f45d-a5bf-47ae-a006-69da41dad847.mov
-
 ![](img/IMG_4137.mov)
 
 If everything worked as planned, we can move onto the next step 🥳
@@ -112,18 +110,18 @@ If everything worked as planned, we can move onto the next step 🥳
 
 ## 🌦️ Step 3: Weather API
 
-Now that we can control our fan using the Microcontroller, we want it to turn on/off based on our outside temperature. We can get this data from an open weather API. I used https://openweathermap.org/api. This API has a free plan, but you must make an account first. Click the link and follow the instructions
+Now that we can control our fan using the Microcontroller, we want it to turn on/off based on our outside temperature. We can get this data from an open weather API. I used https://openweathermap.org/api. This API has a free plan, but you must make an account first. Click the link and follow the instructions below.
 
 <img src="img/s1.png" alt="Sign up API" width="100%"/>
-Click the orange Subscribe button bellow Current Weather Data. You'll be sent to the next page with a list of free a paid plans.
+Click the orange _Subscribe_ button bellow Current Weather Data. You'll be sent to the next page with a list of free and paid plans.
 
 
 <img src="img/s2.png" alt="Sign up API 2" width="500"/>
-Click Get API key bellow free. Sign up by filling in your details a follow the instructions about confirming your account.
+Click _Get API key_ on the free plan. Sign up by filling in your details, follow the instructions and confirm your account.
 After completing your account setup, you can get your private API key.
 
 <img src="img/s4.png" alt="Sign up API 4" width="500"/>
-While being logged in, click on your account name in the top right corner of the website. Then click on my API keys.
+While being logged in, click on your account name in the top right corner of the website. Then click on _my API keys_.
 On this page you can view your API keys. 1 Default API key is generated. Copy this API key and save it for yourself.
 
 ### 🤓 Testing...
@@ -200,8 +198,6 @@ void setup() {
   Serial.println("IP address: ");
   IPAddress ip = WiFi.localIP();
   Serial.println(ip);
-
-  //--------
 
   // If you don't need to check the fingerprint
    client.setInsecure();
@@ -293,7 +289,7 @@ void loop() {
 }
 ````
 
-Getting this final code was a pain in the ass. Almost all manuals online are outdated and are using an old version of ArduinoJson or other obsolete pieces of code. This is just a few of the many error messages I've
+Getting this final code was a pain in the ass. Almost all manuals online are outdated and are using an old version of ArduinoJson or other obsolete pieces of code. This is just a few of many error messages I got.
 
 <img src="img/a.png" alt="error 1" width="500"/>
 
@@ -304,7 +300,7 @@ It didn't work immediately, however. The ESP board connected to my network, but 
 
 <img src="img/c.png" alt="error 3" width="500"/>
 
-It seemed to be a memory issue. I watched [a tutorial](https://www.youtube.com/watch?v=NYP_CxdYzLo) that told me to calculate how much memory I need for my API and to change it in the code. The tool to calculate how much memory to use is called [ArduinoJson Assistant](https://arduinojson.org/v6/assistant/). My result was the following:
+It seemed to be a memory issue. I followed [a tutorial](https://www.youtube.com/watch?v=NYP_CxdYzLo) that told me to calculate how much memory I need for my API and to change it in the code. The tool to calculate how much memory to use is called [ArduinoJson Assistant](https://arduinojson.org/v6/assistant/). My result was the following:
 
 <img src="img/e.png" alt="" width="500"/>
 
@@ -333,7 +329,7 @@ And I created the follow function to turn on the fan if the temperature is below
 if (temp < 25) {
       digitalWrite(relay, LOW);
       Serial.println("Fan turned off");
-  } else {
+} else {
       digitalWrite(relay, HIGH);
       Serial.println("Fan turned on");
 ````
@@ -344,16 +340,16 @@ The result was this:
 
 It worked!
 
-I then added the current location for the temperature in the Serial Monitor. This made it easier to understand if it's working based of location
+I then added the current location for the temperature in the Serial Monitor. This made it easier to understand if it's working based on your location.
 
 ````C++
 float temp = doc["main"]["temp"];
-    String location = doc["name"];
+String location = doc["name"];
 
-    Serial.print("Temperature in ");
-    Serial.print(location);
-    Serial.print(": ");
-    Serial.println(temp);
+Serial.print("Temperature in ");
+Serial.print(location);
+Serial.print(": ");
+Serial.println(temp);
 ````
 
 The result was this:

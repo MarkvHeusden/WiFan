@@ -29,15 +29,15 @@ When following this manual I assume that you have the following hardware & softw
 * ESP8266WiFi
 * ESP8266HTTPClient
 
-## Step 1: Connecting the hardware
+## Step 1: Connecting the Relay
 Connect your Microcontroller to your computer via USB. Then take your relay and connect it to your Microcontroller. My relay looked something like this:
 
-<img src="img/IMG_4098.jpeg" alt="Relay" width="800"/>
-<img src="img/IMG_4097.jpeg" alt="Relay" width="800"/>
+<img src="img/IMG_4098.jpeg" alt="Relay" width="500"/>
+<img src="img/IMG_4097.jpeg" alt="Relay" width="500"/>
 
 As you can see my relay has 4 pins: GND, VCC, NC and SIG. For this case, I'm only using GND, VCC and SIG. The white cable (NC) remains unplugged. I found [this awesome guide](https://diyi0t.com/relay-tutorial-for-arduino-and-esp8266/) on connecting a relay to a Microcontroller. The guide includes the following illustration, showing you how to connect every wire:
 
-<img src="img/Relais-Module-NodeMCU_Steckplatine.png" alt="how to cennect relay to esp8266" width="800"/>
+<img src="img/Relais-Module-NodeMCU_Steckplatine.png" alt="how to cennect relay to esp8266" width="500"/>
 
 Connect the black wire (GND) with the Ground pin on my ESP8266 and connect the red wire (VCC) with the 3V3 pin on your board. Leave the white wire unplugged and connect the yellow wire (SIG) with D7 pin on your board.
 
@@ -45,11 +45,35 @@ Connect the black wire (GND) with the Ground pin on my ESP8266 and connect the r
 
 With everything connected, your board should look something like this:
 
-<img src="img/IMG_4102.jpeg" alt="esp8266 connected" width="800"/>
+<img src="img/IMG_4102.jpeg" alt="esp8266 connected" width="500"/>
 
 
 After connecting the wires it is time to test our relay. I used the following code:
 
+````c++
+int relay = D7;
+
+void setup() {
+  pinMode(relay, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relay, HIGH);
+  delay(2000);
+  digitalWrite(relay, LOW);
+  delay(2000);
+}
+````
+This simple program start by turning on the relay. 2 seconds after that, it turns off. 2 seconds later, the loop function starts again. This is a simple way to test if everything is working so far.
+
+Did everything work as planned? Congrats! 🥳 Let's move onto the next step.
+
+## Step 2: Connecting a power cable
+A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I reccomend using an extension cord with an switch. With this extension cord, u can just remove the switch to reveal the wires.
+
+<img src="img/IMG_4131.jpeg" alt="esp8266 connected" width="500"/>
+
+> My extension cord looked something like this. As you can see it has a switch, but it isn't a grounded plug. This makes it easier to connect, but you can't connect every device to this extension cord and it might be more dangerous than a grounded cord.
 
 ## api
 And now for the fun part

@@ -5,11 +5,11 @@ This manual is made for an IoT school project. I've created an IoT fan called Wi
 ![banner](img/Bannner.png)
 
 The manual will be divided into 5 steps:
-1. Connecting the Relay to the Microcontroller
-2. Connecting a power cable to the Relay
-3. Setting up the Weather API
-4. Creating the code for the Microcontroller
-5. Putting everything together to make a working product
+1. 🕹️ Connecting the Relay to the Microcontroller
+2. 🔌 Connecting a power cable to the Relay
+3. 🌦️ Setting up the Weather API
+4. ⌨️ Creating the code for the Microcontroller
+5. 🤯 Putting everything together to make a working product
 
 <br>
 <br>

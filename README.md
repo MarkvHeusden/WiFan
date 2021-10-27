@@ -1,6 +1,6 @@
 # 💨 WiFan 
 
-This manual is made for an IoT schoolproject. I've created an IoT fan called WiFan. You can controll the fan using an app, a voice assistant, or you can connect it to a weather API to turn on when the temperature rises. In this manual I will show you how I connected my fan to an open weather API using a NodeMCU ESP8266.
+This manual is made for an IoT school project. I've created an IoT fan called WiFan. You can control the fan using an app, a voice assistant, or you can connect it to a weather API to turn on when the temperature rises. In this manual I will show you how I connected my fan to an open weather API using a NodeMCU ESP8266.
 
 ![banner](img/Bannner.png)
 
@@ -15,7 +15,7 @@ The manual will be divided into 5 steps:
 <br>
 
 ## 📝 Prerequisites
-When following this manual I assume that you have the following hardware & software installed. If this is not the case, please set-up your Microcontroller correctly before following this manual.
+When following this manual, I assume that you have the following hardware & software installed. If this is not the case, please set-up your Microcontroller correctly before following this manual.
 
 ### ⚙️ Hardware
 * NodeMCU ESP8266 Microcontroller (or similar board)
@@ -43,11 +43,11 @@ Connect your Microcontroller to your computer via USB. Then take your relay and 
 
 As you can see my relay has 4 pins: GND, VCC, NC and SIG. For this case, I'm only using GND, VCC and SIG. The white cable (NC) remains unplugged. I found [this awesome guide](https://diyi0t.com/relay-tutorial-for-arduino-and-esp8266/) on connecting a relay to a Microcontroller. The guide includes the following illustration, showing you how to connect every wire:
 
-<img src="img/Relais-Module-NodeMCU_Steckplatine.png" alt="how to cennect relay to esp8266" width="500"/>
+<img src="img/Relais-Module-NodeMCU_Steckplatine.png" alt="how to connect relay to esp8266" width="500"/>
 
 Connect the black wire (GND) with the Ground pin on my ESP8266 and connect the red wire (VCC) with the 3V3 pin on your board. Leave the white wire unplugged and connect the yellow wire (SIG) with D7 pin on your board.
 
-> Warning! Connect these wires carefully. The guide I used and the picture above told me to connect the VCC on the relay with the VIN pin on your board when using an ESP8266 or ESP32, because you need a 5V output. I’ve tried it, and my wire immediately started smoking, so please don’t make the same mistake. The 3V3 pin works fine for me instead.
+> Warning! Connect these wires carefully. The guide I used, and the picture above told me to connect the VCC on the relay with the VIN pin on your board when using an ESP8266 or ESP32, because you need a 5V output. I’ve tried it, and my wire immediately started smoking, so please don’t make the same mistake. The 3V3 pin works fine for me instead.
 
 With everything connected, your board should look something like this:
 
@@ -56,7 +56,7 @@ With everything connected, your board should look something like this:
 ### 🤓 Testing...
 
 
-After connecting the wires it is time to test our relay. I used the following code:
+After connecting the wires, it is time to test our relay. I used the following code:
 
 ````c++
 int relay = D7;
@@ -72,7 +72,7 @@ void loop() {
   delay(2000);
 }
 ````
-This simple program start by turning on the relay. 2 seconds after that, it turns off. 2 seconds later, the loop function starts again. This is a simple way to test if everything is working so far.
+This simple program starts by turning on the relay. 2 seconds after that, it turns off. 2 seconds later, the loop function starts again. This is a simple way to test if everything is working so far.
 
 Did everything work as planned? Congrats! 🥳. Let's move onto the next step.
 
@@ -80,11 +80,11 @@ Did everything work as planned? Congrats! 🥳. Let's move onto the next step.
 <br>
 
 ## 🔌 Step 2: Connecting a power cable
-A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I reccomend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
+A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason, we need to connect the relay to the power cable of the object we want to switch. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to switch different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I recommend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
 
 <img src="img/IMG_4131.jpeg" alt="power cable" width="500"/>
 
-My extension cord looked something like this. As you can see it has a switch, which makes it easy for me to connect the relay. You do need to use a terminal block however with this cord, because both wires will be exposed when you remove the switch and you only need 1 for the relay. After removing the switch or cutting open the cable and revealing/stripping the wires, your extension cord should look something like this:
+My extension cord looked something like this. As you can see it has a switch, which makes it easy for me to connect the relay. You do need to use a terminal block however with this cord, because both wires will be exposed when you remove the switch, and you only need 1 for the relay. After removing the switch or cutting open the cable and revealing/stripping the wires, your extension cord should look something like this:
 
 <img src="img/IMG_4134.jpeg" alt="power cable stripped" width="500"/>
 
@@ -112,14 +112,14 @@ If everything worked as planned, we can move onto the next step 🥳
 
 ## 🌦️ Step 3: Weather API
 
-Now that we can controll our fan using the Microcontroller, we want it to turn on/off based on our outside temperature. We can get this data from an open weather API. I used https://openweathermap.org/api. This API has a free plan, you just have to make an account. Click the link and follow the instructions
+Now that we can control our fan using the Microcontroller, we want it to turn on/off based on our outside temperature. We can get this data from an open weather API. I used https://openweathermap.org/api. This API has a free plan, but you must make an account first. Click the link and follow the instructions
 
 <img src="img/s1.png" alt="Sign up API" width="100%"/>
-Click the orange Subscribe button bellow Current Weather Data. You'll be send to the next page with a list of free an paid plans.
+Click the orange Subscribe button bellow Current Weather Data. You'll be sent to the next page with a list of free a paid plans.
 
 
 <img src="img/s2.png" alt="Sign up API 2" width="500"/>
-Click Get API key bellow free. Sign up by filling in your details an follow the instructions about confirming your account.
+Click Get API key bellow free. Sign up by filling in your details a follow the instructions about confirming your account.
 After completing your account setup, you can get your private API key.
 
 <img src="img/s4.png" alt="Sign up API 4" width="500"/>
@@ -138,23 +138,23 @@ You should see something like this:
 
 <img src="img/s5.png" alt="API result 1" width="500"/>
 
-> I recieved an error the first time trying this. This was due to the API key needing a few hours to be activated. If you get an error aswell, try again after a few hours or visit the [Frequently Asked Questions](https://openweathermap.org/faq)
+> I received an error the first time trying this. This was due to the API key needing a few hours to be activated. If you get an error as well, try again after a few hours or visit the [Frequently Asked Questions](https://openweathermap.org/faq)
 
-If you see JSON code, your API request worked. The only problem is, the temperatures are not in degrees Celcius. To change this add `&units=metric` after your URL. Your final code will then look similar to this:
+If you see JSON code, your API request worked. The only problem is the temperatures are not in degrees Celsius. To change this, add `&units=metric` after your URL. Your final code will then look like this:
 
 ````
 api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=metric
 ````
 
-<img src="img/s6.png" alt="API result celcius" width="500"/>
+<img src="img/s6.png" alt="API result celsius" width="500"/>
 
-Recieving JSON code with temperatures in Celcius?, Great! we can move onto the next step 🥳
+Receiving JSON code with temperatures in Celsius? Great! we can move onto the next step 🥳
 
 <br>
 <br>
 
 ## ⌨️ The code
-And now for the fun part, but also the hardest part (for me atleast), the code. This part took by far the most time, but I will keep it simple in this manual. I will post the full code below. You can copy everything, just change these 3 things:
+And now for the fun part, but also the hardest part (for me at least), the code. This part took by far the most time, but I will keep it simple in this manual. I will post the full code below. You can copy everything, just change these 3 things:
 
 * `char ssid[] = "???";       // REPLACE with your network SSID (name)`
 * `char password[] = "???";  // REPLACE with your network key`
@@ -300,7 +300,7 @@ Getting this final code was a pain in the ass. Almost all manuals online are out
 <img src="img/b.png" alt="error 2" width="500"/>
 
 After hours of trying, I finally found a recent and up to date source. [This GitHub Repo](https://github.com/witnessmenow/arduino-sample-api-request/blob/master/ESP8266/HTTP_GET_JSON/HTTP_GET_JSON.ino) saved this project and it is the base of my code.
-It didn't work immidiatly however. The ESP board connected to my network, but it didn't get the API's data. The error message I recieved was the following:
+It didn't work immediately, however. The ESP board connected to my network, but it didn't get the API's data. The error message I received was the following:
 
 <img src="img/c.png" alt="error 3" width="500"/>
 
@@ -308,7 +308,7 @@ It seemed to be a memory issue. I watched [a tutorial](https://www.youtube.com/w
 
 <img src="img/e.png" alt="" width="500"/>
 
-It recommende 1024, so I changed my code from 192 to 1024
+It recommended 1024, so I changed my code from 192 to 1024
 
 <img src="img/d.png" alt="" width="500"/>
 
@@ -324,7 +324,7 @@ Now that I've got the API working, I can combine Step 1 (the relay code) with th
 I've added these lines in my final code:
 `int relay = D7;` & `pinMode(relay, OUTPUT);`
 
-And I created the follow function to turn on the fan if the temperatur is below 25 degrees Celcius:
+And I created the follow function to turn on the fan if the temperature is below 25 degrees Celsius:
 ````C++
 if (temp < 25) {
       digitalWrite(relay, LOW);
@@ -340,7 +340,7 @@ The result was this:
 
 It worked!
 
-I then add the current location for the temperature in the Serial Monitor. This made it easier to understand if it's working based of location
+I then added the current location for the temperature in the Serial Monitor. This made it easier to understand if it's working based of location
 
 ````C++
 float temp = doc["main"]["temp"];
@@ -362,6 +362,6 @@ Awesome, everything works! 🥳 Just to proof everything is working, I changed m
 
 ## ✅ Step 6: Done!!
 
-This is where I'm going to end this project. I did want to add some additional things, but this project was way harder than expected and it took me a lot of time. So feel free to expand this project yourself with cool features!
+This is where I'm going to end this project. I did want to add some additional things, but this project was way harder than expected and it took me a lot of time. So, feel free to expand this project yourself with cool features!
 
 ![](https://media.giphy.com/media/3XiQswSmbjBiU/giphy.gif)

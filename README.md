@@ -80,7 +80,7 @@ Did everything work as planned? Congrats! 🥳. Let's move onto the next step.
 <br>
 
 ## 🔌 Step 2: Connecting a power cable
-A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason, we need to connect the relay to the power cable of the object we want to switch on and off. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to use different higher voltage objects in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I recommend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
+A relay is a low-power electrical switch which toggles on and off a high-power (Max 250V) circuit. For this reason, we need to connect the relay to the power cable of the object we want to switch on and off. In this case it's a fan. Because I didn't want to ruin my fans power cable, and I might want to use different devices in the future, I decided to use an old extension cord. If you're like me and you don't have experience cutting and stripping wires, I recommend using an extension cord with a switch. With this extension cord, u can just remove the switch to reveal the wires.
 
 <img src="img/IMG_4131.jpeg" alt="power cable" width="500"/>
 

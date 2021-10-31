@@ -27,7 +27,7 @@ When following this manual, I assume that you have the following hardware & soft
 * [Arduino IDE](https://www.arduino.cc/en/software)
 * NodeMCU USB Drivers
 
-### 📚 Libaries
+### 📚 Libraries
 * ArduinoJson
 * WiFiClientSecure
 * ESP8266WiFi
